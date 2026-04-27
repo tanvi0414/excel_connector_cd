@@ -1,7 +1,7 @@
 {
     "name": "Excel Connector ",
     "summary": "Import and export Excel files with reusable business-ready profiles",
-    "version": "18.0.2.0.0",
+    "version": "19.0.2.0.0",
     "category": "Productivity",
     "author": "CoDE2",
     "license": "OPL-1",
