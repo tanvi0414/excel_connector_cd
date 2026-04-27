@@ -5,7 +5,7 @@
     "category": "Productivity",
     "author": "CoDE2",
     "license": "OPL-1",
-    "price": 499.0,
+    "price": 19.0,
     "currency": "USD",
     "depends": ["base"],
     "images": ["static/description/banner.gif"],
