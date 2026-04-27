@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_excel_profile_list" model="ir.ui.view">
+        <field name="name">nl.excel.profile.list</field>
+        <field name="model">nl.excel.profile</field>
+        <field name="arch" type="xml">
+            <list string="Excel Profiles" default_order="sequence asc, name asc">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="mode"/>
+                <field name="preset_key"/>
+                <field name="active"/>
+                <field name="auto_export"/>
+                <field name="next_run_at"/>
+                <field name="last_run_at"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_excel_profile_form" model="ir.ui.view">
+        <field name="name">nl.excel.profile.form</field>
+        <field name="model">nl.excel.profile</field>
+        <field name="arch" type="xml">
+            <form string="Excel Profile">
+                <header>
+                    <button name="action_run_export" type="object" string="Run Export" class="btn-primary" invisible="id == False"/>
+                    <button name="action_open_import_wizard" type="object" string="Import File" invisible="id == False"/>
+                    <button name="action_download_template" type="object" string="Download Template" invisible="id == False"/>
+                    <button name="action_apply_preset" type="object" string="Apply Preset" invisible="preset_key == False"/>
+                    <button name="action_open_logs" type="object" string="Logs" invisible="id == False"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Sales Orders to Excel"/></h1>
+                    </div>
+                    <group>
+                        <group string="Profile">
+                            <field name="active"/>
+                            <field name="sequence"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="run_as_user_id"/>
+                            <field name="preset_key"/>
+                            <field name="model_id"/>
+                            <field name="mode"/>
+                            <field name="sheet_name"/>
+                            <field name="export_filename"/>
+                        </group>
+                        <group string="Import Rules">
+                            <field name="import_mode"/>
+                            <field name="key_field_id" invisible="import_mode == 'create'"/>
+                            <field name="stop_on_error"/>
+                            <field name="last_run_at" readonly="1"/>
+                            <field name="last_attachment_id" readonly="1"/>
+                            <field name="log_count" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Columns">
+                            <field name="line_ids">
+                                <list editable="bottom" string="Columns">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="field_id"/>
+                                    <field name="column_label"/>
+                                    <field name="required_on_import"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Export Setup">
+                            <group>
+                                <group>
+                                    <field name="include_headers"/>
+                                    <field name="domain" widget="text" placeholder="[]"/>
+                                </group>
+                                <group>
+                                    <field name="order_by"/>
+                                    <field name="limit"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Schedule">
+                            <group>
+                                <group>
+                                    <field name="auto_export"/>
+                                    <field name="interval_number" invisible="auto_export == False"/>
+                                    <field name="interval_type" invisible="auto_export == False"/>
+                                    <field name="next_run_at" invisible="auto_export == False"/>
+                                </group>
+                                <group>
+                                    <div class="o_form_label">
+                                        Scheduled export saves the latest workbook as an attachment and writes a log entry.
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_excel_profiles" model="ir.actions.act_window">
+        <field name="name">Profiles</field>
+        <field name="res_model">nl.excel.profile</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p>Create a business-ready Excel profile for import, export, or both.</p>
+        </field>
+    </record>
+</odoo>

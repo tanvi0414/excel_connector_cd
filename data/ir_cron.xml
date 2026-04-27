@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="ir_cron_nl_excel_profile_scheduler" model="ir.cron">
+        <field name="name">Excel Connector Scheduled Exports</field>
+        <field name="model_id" ref="model_nl_excel_profile"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_run_scheduled_exports()</field>
+        <field name="interval_number">30</field>
+        <field name="interval_type">minutes</field>
+        <field name="active">True</field>
+    </record>
+</odoo>

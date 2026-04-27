@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_excel_connector_root"
+              name="Excel Connector"
+              action="action_excel_profiles"
+              sequence="10"
+              web_icon="nl_excel_connector,static/description/icon.png"
+              />
+
+    <menuitem id="menu_excel_profiles"
+              name="Profiles"
+              parent="menu_excel_connector_root"
+              action="action_excel_profiles"
+              sequence="10"/>
+
+    <menuitem id="menu_excel_logs"
+              name="Logs"
+              parent="menu_excel_connector_root"
+              action="action_excel_logs"
+              sequence="20"/>
+</odoo>
